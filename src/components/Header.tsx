@@ -3,6 +3,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Header = () => {
   return (
@@ -22,6 +23,8 @@ export const Header = () => {
           <p className="text-sm font-medium">Available Balance</p>
           <p className="text-2xl font-bold text-primary">P55,001.00</p>
         </div>
+        
+        <ThemeToggle />
         
         <Avatar className="h-10 w-10 border-2 border-primary/20">
           <AvatarImage src="/placeholder.svg" alt="User" />

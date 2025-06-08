@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { ThemeProvider } from "./components/ThemeProvider";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import BudgetPlanner from "./pages/BudgetPlanner";
@@ -21,30 +22,32 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <SidebarProvider>
-          <div className="min-h-screen flex w-full bg-background">
-            <Layout>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/budget" element={<BudgetPlanner />} />
-                <Route path="/goals" element={<Goals />} />
-                <Route path="/investments" element={<Investments />} />
-                <Route path="/loan-estimator" element={<LoanEstimator />} />
-                <Route path="/credit-score" element={<CreditScore />} />
-                <Route path="/spending-analysis" element={<SpendingAnalysis />} />
-                <Route path="/financial-tips" element={<FinancialTips />} />
-                <Route path="/support" element={<Support />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Layout>
-          </div>
-        </SidebarProvider>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider defaultTheme="light" storageKey="masheleng-ui-theme">
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <SidebarProvider>
+            <div className="min-h-screen flex w-full bg-background">
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/budget" element={<BudgetPlanner />} />
+                  <Route path="/goals" element={<Goals />} />
+                  <Route path="/investments" element={<Investments />} />
+                  <Route path="/loan-estimator" element={<LoanEstimator />} />
+                  <Route path="/credit-score" element={<CreditScore />} />
+                  <Route path="/spending-analysis" element={<SpendingAnalysis />} />
+                  <Route path="/financial-tips" element={<FinancialTips />} />
+                  <Route path="/support" element={<Support />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Layout>
+            </div>
+          </SidebarProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

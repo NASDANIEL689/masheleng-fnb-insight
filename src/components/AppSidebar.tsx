@@ -38,9 +38,10 @@ const navigationItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
+  const collapsed = state === "collapsed";
 
   const isActive = (path: string) => currentPath === path;
   const getNavClass = ({ isActive }: { isActive: boolean }) =>
@@ -51,7 +52,7 @@ export function AppSidebar() {
   return (
     <Sidebar
       className={`${collapsed ? "w-16" : "w-64"} border-r border-border transition-all duration-300`}
-      collapsible
+      collapsible="icon"
     >
       <SidebarContent className="bg-sidebar">
         <div className="p-4">
