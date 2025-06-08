@@ -3,7 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
+import { useState } from 'react';
 
 const monthlyData = [
   { month: 'Jan', income: 8500, spending: 6200 },
@@ -23,6 +25,8 @@ const spendingData = [
 ];
 
 const Dashboard = () => {
+  const [trendView, setTrendView] = useState('income');
+
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Welcome Section */}
@@ -108,20 +112,36 @@ const Dashboard = () => {
         {/* Income/Spending Chart */}
         <Card className="lg:col-span-2 shadow-financial">
           <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              Income vs Spending
-              <Badge variant="outline">Last 6 months</Badge>
-            </CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle>Income vs Spending</CardTitle>
+              <div className="flex items-center gap-3">
+                <Select value={trendView} onValueChange={setTrendView}>
+                  <SelectTrigger className="w-[140px]">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="income">Income</SelectItem>
+                    <SelectItem value="spending">Spending</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Badge variant="outline">Last 6 months</Badge>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={monthlyData}>
+              <LineChart data={monthlyData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis />
-                <Bar dataKey="income" fill="hsl(var(--primary))" radius={4} />
-                <Bar dataKey="spending" fill="hsl(var(--secondary))" radius={4} />
-              </BarChart>
+                <Line 
+                  type="monotone" 
+                  dataKey={trendView} 
+                  stroke={trendView === 'income' ? 'hsl(var(--primary))' : 'hsl(var(--secondary))'} 
+                  strokeWidth={3}
+                  dot={{ fill: trendView === 'income' ? 'hsl(var(--primary))' : 'hsl(var(--secondary))', strokeWidth: 2, r: 4 }}
+                />
+              </LineChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
