@@ -44,18 +44,14 @@ export function AppSidebar() {
   const collapsed = state === "collapsed";
 
   const isActive = (path: string) => currentPath === path;
-  const getNavClass = ({ isActive }: { isActive: boolean }) =>
-    isActive 
-      ? "bg-primary text-primary-foreground font-medium hover:bg-primary/90" 
-      : "hover:bg-accent hover:text-accent-foreground transition-colors";
 
   return (
     <Sidebar
-      className={`${collapsed ? "w-16" : "w-64"} border-r border-border transition-all duration-300`}
+      className="border-r border-border bg-sidebar"
       collapsible="icon"
     >
       <SidebarContent className="bg-sidebar">
-        <div className="p-4">
+        <div className="p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">M</span>
@@ -70,21 +66,27 @@ export function AppSidebar() {
         </div>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-foreground/60 px-4">
+          <SidebarGroupLabel className="text-sidebar-foreground/60 px-4 py-2">
             {!collapsed && "Financial Tools"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="px-2">
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className="mx-2">
+                  <SidebarMenuButton asChild className="w-full">
                     <NavLink 
                       to={item.url} 
                       end 
-                      className={getNavClass}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
+                          isActive 
+                            ? "bg-primary text-primary-foreground font-medium" 
+                            : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                        }`
+                      }
                     >
-                      <item.icon className="h-5 w-5" />
-                      {!collapsed && <span className="ml-3">{item.title}</span>}
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
+                      {!collapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
