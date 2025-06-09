@@ -47,10 +47,10 @@ export function AppSidebar() {
 
   return (
     <Sidebar
-      className="border-r border-border bg-sidebar"
+      className="border-r border-border bg-card"
       collapsible="icon"
     >
-      <SidebarContent className="bg-sidebar">
+      <SidebarContent className="bg-card">
         <div className="p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -58,15 +58,15 @@ export function AppSidebar() {
             </div>
             {!collapsed && (
               <div>
-                <h1 className="font-bold text-sidebar-foreground">Masheleng</h1>
-                <p className="text-xs text-sidebar-foreground/70">FNB Financial Manager</p>
+                <h1 className="font-bold text-foreground">Masheleng</h1>
+                <p className="text-xs text-muted-foreground">FNB Financial Manager</p>
               </div>
             )}
           </div>
         </div>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-foreground/60 px-4 py-2">
+          <SidebarGroupLabel className="text-muted-foreground px-4 py-2">
             {!collapsed && "Financial Tools"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -81,7 +81,7 @@ export function AppSidebar() {
                         `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
                           isActive 
                             ? "bg-primary text-primary-foreground font-medium" 
-                            : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
                         }`
                       }
                     >
