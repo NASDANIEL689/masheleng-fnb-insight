@@ -17,6 +17,7 @@ import LoanEstimator from "./pages/LoanEstimator";
 import CreditScore from "./pages/CreditScore";
 import SpendingAnalysis from "./pages/SpendingAnalysis";
 import FinancialTips from "./pages/FinancialTips";
+import Profile from "./pages/Profile";
 import Support from "./pages/Support";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
@@ -49,6 +50,7 @@ const App = () => (
                             <Route path="/credit-score" element={<CreditScore />} />
                             <Route path="/spending-analysis" element={<SpendingAnalysis />} />
                             <Route path="/financial-tips" element={<FinancialTips />} />
+                            <Route path="/profile" element={<Profile />} />
                             <Route path="/support" element={<Support />} />
                             <Route path="*" element={<NotFound />} />
                           </Routes>

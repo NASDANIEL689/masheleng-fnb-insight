@@ -34,6 +34,7 @@ const navigationItems = [
   { title: "Credit Score", url: "/credit-score", icon: Award },
   { title: "Spending Analysis", url: "/spending-analysis", icon: BarChart3 },
   { title: "Financial Tips", url: "/financial-tips", icon: BookOpen },
+  { title: "Profile", url: "/profile", icon: Award },
   { title: "Support", url: "/support", icon: HeadphonesIcon },
 ];
 
@@ -81,7 +82,7 @@ export function AppSidebar() {
                         `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
                           isActive 
                             ? "bg-primary text-primary-foreground font-medium" 
-                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
+                            : "text-primary hover:bg-accent hover:text-accent-foreground"
                         }`
                       }
                     >
